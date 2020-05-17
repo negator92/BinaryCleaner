@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:BinaryCleaner.ViewModels;assembly=BinaryCleaner"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="BinaryCleaner.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="BinaryCleaner">
+        <Window.Styles>
+            <Style Selector="TextBlock">
+                <Setter Property="Margin" Value="5" />
+            </Style>
+        </Window.Styles>
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+<DockPanel>
+    <TextBlock Text="{Binding Greeting}"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        DockPanel.Dock="Top" />
+</DockPanel>
+
+</Window>
