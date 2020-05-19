@@ -7,21 +7,36 @@
         x:Class="BinaryCleaner.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="BinaryCleaner">
-        <Window.Styles>
-            <Style Selector="TextBlock">
-                <Setter Property="Margin" Value="5" />
-            </Style>
-        </Window.Styles>
+  <Window.Styles>
+    <Style Selector="TextBlock">
+      <Setter Property="Margin" Value="5" />
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="Margin" Value="5" />
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="Margin" Value="5" />
+    </Style>
+    <Style Selector="DockPanel">
+      <Setter Property="Margin" Value="5" />
+    </Style>
+  </Window.Styles>
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel />
-    </Design.DataContext>
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
 
-<DockPanel>
+  <DockPanel>
+    <DockPanel DockPanel.Dock="Bottom">
+      <TextBlock Text="Folder path: " DockPanel.Dock="Left" />
+      <TextBox Text="{Binding PathToClean}" DockPanel.Dock="Left" />
+      <Button DockPanel.Dock="Right">
+        <TextBlock Text="Choose folder" />
+      </Button>
+    </DockPanel>
     <TextBlock Text="{Binding Greeting}"
         HorizontalAlignment="Center"
         VerticalAlignment="Top"
-        DockPanel.Dock="Top" />
-</DockPanel>
-
+        DockPanel.Dock="Bottom" />
+  </DockPanel>
 </Window>
