@@ -30,7 +30,7 @@
     <DockPanel DockPanel.Dock="Bottom">
       <TextBlock Text="Folder path: " DockPanel.Dock="Left" />
       <TextBox Text="{Binding PathToClean}" DockPanel.Dock="Left" />
-      <Button DockPanel.Dock="Right">
+      <Button Command="{Binding OpenFolderCommand}" DockPanel.Dock="Right">
         <TextBlock Text="Choose folder" />
       </Button>
     </DockPanel>
