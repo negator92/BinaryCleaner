@@ -8,30 +8,57 @@ using System.Linq;
 using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace BinaryCleaner.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        //public ReactiveCommand<Unit, Unit> OpenFolderCommand { get; }
+        public MainWindowViewModel()
+        {
+            CleanFolderCommand = ReactiveCommand.Create(CleanFolder, this.whenWhenAnyValue(x => File.Exists(x.pathToClean)));
+            OpenFolderCommand = ReactiveCommand.Create(OpenFolder);
+        }
+        private string pathToClean = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private string log = $"{nameof(BinaryCleaner)}{nameof(Log)}\n";
 
-        public bool IsOpenFolderCommandEnabled { get; set; } = false;
-        public string Greeting => nameof(BinaryCleaner);
-        public string PathToClean { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        public ICommand CleanFolderCommand { get; set; }
+        public ICommand OpenFolderCommand { get; set; }
 
-        //public MainWindowViewModel()
-        //{
-        //    OpenFolderCommand = ReactiveCommand.Create(OpenFolder);
-        //}
+        public string Log
+        {
+            get { return log; }
+            set { this.RaiseAndSetIfChanged(ref log, value); }
+        }
+        public string PathToClean
+        {
+            get { return pathToClean; }
+            set { this.RaiseAndSetIfChanged(ref pathToClean, value); }
+        }
 
-        private async Task OpenFolderCommand()
+        private async Task CleanFolder()
         {
 
-            var dlg = new OpenFolderDialog();
+            var dlg = new OpenFolderDialog
+            {
+                Directory = PathToClean
+            };
 
-                dlg.Directory = PathToClean;
+            var result = await dlg.ShowAsync(new Window()).ConfigureAwait(false);
+            if (!string.IsNullOrEmpty(result))
+            {
+                PathToClean = result;
+            }
+        }
 
-            var result = await dlg.ShowAsync();
+        private async Task OpenFolder()
+        {
+            var dlg = new OpenFolderDialog
+            {
+                Directory = PathToClean
+            };
+
+            var result = await dlg.ShowAsync(new Window()).ConfigureAwait(false);
             if (!string.IsNullOrEmpty(result))
             {
                 PathToClean = result;

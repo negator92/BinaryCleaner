@@ -3,7 +3,7 @@
         xmlns:vm="clr-namespace:BinaryCleaner.ViewModels;assembly=BinaryCleaner"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
         x:Class="BinaryCleaner.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="BinaryCleaner">
@@ -28,13 +28,17 @@
 
   <DockPanel>
     <DockPanel DockPanel.Dock="Bottom">
-      <TextBlock Text="Folder path: " DockPanel.Dock="Left" />
+      <TextBlock Text="Folder path: " DockPanel.Dock="Left"
+                 VerticalAlignment="Center" />
       <TextBox Text="{Binding PathToClean}" DockPanel.Dock="Left" />
       <Button Command="{Binding OpenFolderCommand}" DockPanel.Dock="Right">
         <TextBlock Text="Choose folder" />
       </Button>
+      <Button Command="{Binding CleanFolderCommand}" DockPanel.Dock="Right">
+        <TextBlock Text="Clean" />
+      </Button>
     </DockPanel>
-    <TextBlock Text="{Binding Greeting}"
+    <TextBlock Text="{Binding Log}"
         HorizontalAlignment="Center"
         VerticalAlignment="Top"
         DockPanel.Dock="Bottom" />
