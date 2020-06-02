@@ -18,8 +18,10 @@ namespace BinaryCleaner.ViewModels
             OpenFolderCommand = ReactiveCommand.Create(OpenFolder);
         }
 
+        private readonly string[] binaries = new string[] { "Debug", "Release" };
+
         private string pathToClean = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        private string log = $"{nameof(BinaryCleaner)}{nameof(Log)}\n";
+        private string log = string.Empty;
 
         public ICommand CleanFolderCommand { get; set; }
         public ICommand OpenFolderCommand { get; set; }
@@ -33,12 +35,37 @@ namespace BinaryCleaner.ViewModels
         public string PathToClean
         {
             get { return pathToClean; }
-            set { this.RaiseAndSetIfChanged(ref pathToClean, value); }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref pathToClean, value);
+                Log += $"\n{value}";
+            }
         }
 
         private async Task CleanFolder()
         {
-            Debug.WriteLine(pathToClean);
+            Log = PathToClean;
+            RecursiveCleaning(Directory.GetDirectories(PathToClean));
+        }
+
+        private void RecursiveCleaning(string[] dirs)
+        {
+            if (dirs.Length > 0)
+            {
+                foreach (var dir in dirs)
+                {
+                    var di = new DirectoryInfo(dir);
+                    if (binaries.Any(b => b.Equals(di.Name)))
+                    {
+                        di.Delete(true);
+                        Log += $"\n{dir}";
+                    }
+                    else
+                    {
+                        RecursiveCleaning(Directory.GetDirectories(dir));
+                    }
+                }
+            }
         }
 
         private async Task OpenFolder()

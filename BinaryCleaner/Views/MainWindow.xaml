@@ -38,9 +38,11 @@
         <TextBlock Text="Choose folder" />
       </Button>
     </DockPanel>
-    <TextBlock Text="{Binding Log}"
+    <TextBox Text="{Binding Log}"
         HorizontalAlignment="Center"
         VerticalAlignment="Top"
-        DockPanel.Dock="Bottom" />
+        DockPanel.Dock="Bottom"
+        BorderThickness="0"
+        IsReadOnly="True" />
   </DockPanel>
 </Window>
