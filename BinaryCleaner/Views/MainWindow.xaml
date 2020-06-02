@@ -31,11 +31,11 @@
       <TextBlock Text="Folder path: " DockPanel.Dock="Left"
                  VerticalAlignment="Center" />
       <TextBox Text="{Binding PathToClean}" DockPanel.Dock="Left" />
-      <Button Command="{Binding OpenFolderCommand}" DockPanel.Dock="Right">
-        <TextBlock Text="Choose folder" />
-      </Button>
       <Button Command="{Binding CleanFolderCommand}" DockPanel.Dock="Right">
         <TextBlock Text="Clean" />
+      </Button>
+      <Button Command="{Binding OpenFolderCommand}" DockPanel.Dock="Right">
+        <TextBlock Text="Choose folder" />
       </Button>
     </DockPanel>
     <TextBlock Text="{Binding Log}"
