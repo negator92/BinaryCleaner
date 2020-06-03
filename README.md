@@ -7,8 +7,8 @@ App can clean \bin, \obj recursive in folder you choose (where C# projects store
 
 ## First screen
 
-![](https://github.com/Negator92/BinaryCleaner/docs/FirstView.png)
+![](docs/FirstView.png)
 
 ## Cleaning example
 
-![](https://github.com/Negator92/BinaryCleaner/docs/AfterClean.jpg)
+![](docs/AfterClean.jpg)
