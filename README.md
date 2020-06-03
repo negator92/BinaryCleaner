@@ -7,7 +7,7 @@ App can clean \bin, \obj recursive in folder you choose (where C# projects store
 
 ## First screen
 
-![](docs/FirstView.png)
+![](docs/FirstView.jpg)
 
 ## Cleaning example
 
