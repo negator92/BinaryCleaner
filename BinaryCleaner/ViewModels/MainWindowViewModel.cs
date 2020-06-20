@@ -20,6 +20,8 @@ namespace BinaryCleaner.ViewModels
 
         private readonly string[] binaries = new string[] { "Debug", "Release" };
 
+        private readonly string binaryCleanerPath = AppDomain.CurrentDomain.BaseDirectory;
+
         private string pathToClean = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private string log = string.Empty;
 
@@ -50,21 +52,29 @@ namespace BinaryCleaner.ViewModels
 
         private void RecursiveCleaning(string[] dirs)
         {
-            if (dirs.Length > 0)
+            try
             {
-                foreach (var dir in dirs)
+                if (dirs.Length > 0)
                 {
-                    var di = new DirectoryInfo(dir);
-                    if (binaries.Any(b => b.Equals(di.Name)))
+                    foreach (var dir in dirs)
                     {
-                        di.Delete(true);
-                        Log += $"\n{dir}";
-                    }
-                    else
-                    {
-                        RecursiveCleaning(Directory.GetDirectories(dir));
+                        var di = new DirectoryInfo(dir);
+                        if (binaries.Any(b => b.Equals(di.Name)))
+                        {
+                            di.Delete(true);
+                            Log += $"\n{dir}";
+                        }
+                        else
+                        {
+                            RecursiveCleaning(Directory.GetDirectories(dir));
+                        }
                     }
                 }
+            }
+            catch (System.Exception ex)
+            {
+                Log += $"{ex.Message}";
+                throw;
             }
         }
 
