@@ -1,7 +1,6 @@
 ﻿using Avalonia.Controls;
 using ReactiveUI;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
@@ -18,7 +17,7 @@ namespace BinaryCleaner.ViewModels
             OpenFolderCommand = ReactiveCommand.Create(OpenFolder);
         }
 
-        private readonly string[] binaries = new string[] { "Debug", "Release" };
+        private readonly string[] binaries = new string[] { "bin", "obj" };
 
         private readonly string binaryCleanerPath = AppDomain.CurrentDomain.BaseDirectory;
 

@@ -12,3 +12,10 @@ App can clean \bin, \obj recursive in folder you choose (where C# projects store
 ## Cleaning example
 
 ![](docs/AfterClean.jpg)
+
+# To-do
+
+* asyncronus
+* loader
+* ...
+* style
