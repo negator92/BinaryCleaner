@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AnalysisLevel>latest</AnalysisLevel>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -14,8 +15,14 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.9.9" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.9.9" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.9" />
+    <PackageReference Include="Avalonia">
+      <Version>0.9.12</Version>
+    </PackageReference>
+    <PackageReference Include="Avalonia.Desktop">
+      <Version>0.9.12</Version>
+    </PackageReference>
+    <PackageReference Include="Avalonia.ReactiveUI">
+      <Version>0.9.12</Version>
+    </PackageReference>
   </ItemGroup>
 </Project>

@@ -46,10 +46,10 @@ namespace BinaryCleaner.ViewModels
         private async Task CleanFolder()
         {
             Log = PathToClean;
-            RecursiveCleaning(Directory.GetDirectories(PathToClean));
+            await RecursiveCleaning(Directory.GetDirectories(PathToClean)).ConfigureAwait(false);
         }
 
-        private void RecursiveCleaning(string[] dirs)
+        private async Task RecursiveCleaning(string[] dirs)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace BinaryCleaner.ViewModels
                         }
                         else
                         {
-                            RecursiveCleaning(Directory.GetDirectories(dir));
+                            await RecursiveCleaning(Directory.GetDirectories(dir)).ConfigureAwait(false);
                         }
                     }
                 }
