@@ -19,3 +19,9 @@ App can clean \bin, \obj recursive in folder you choose (where C# projects store
 * loader
 * ...
 * style
+
+# How to build
+
+ * dotnet clean
+ * dotnet restore
+ * dotnet build -c release
