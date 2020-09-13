@@ -19,13 +19,18 @@ namespace BinaryCleaner.ViewModels
 
         private readonly string[] binaries = new string[] { "bin", "obj" };
 
-        private readonly string binaryCleanerPath = AppDomain.CurrentDomain.BaseDirectory;
-
+        private int memory = default;
         private string pathToClean = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private string log = string.Empty;
 
         public ICommand CleanFolderCommand { get; set; }
         public ICommand OpenFolderCommand { get; set; }
+
+        public int Memory
+        {
+            get { return memory; }
+            set { this.RaiseAndSetIfChanged(ref memory, value); }
+        }
 
         public string Log
         {
@@ -39,13 +44,13 @@ namespace BinaryCleaner.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref pathToClean, value);
-                Log += $"\n{value}";
+                // Log += $"\n{value}";
             }
         }
 
         private async Task CleanFolder()
         {
-            Log = PathToClean;
+            // Log = PathToClean;
             await RecursiveCleaning(Directory.GetDirectories(PathToClean)).ConfigureAwait(false);
         }
 
@@ -62,6 +67,8 @@ namespace BinaryCleaner.ViewModels
                         {
                             di.Delete(true);
                             Log += $"\n{dir}";
+                            Memory = dir.Length;
+                            Log += 0.Equals(Memory) ? string.Empty : $" {Memory} bytes";
                         }
                         else
                         {
@@ -70,7 +77,7 @@ namespace BinaryCleaner.ViewModels
                     }
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 Log += $"{ex.Message}";
                 throw;
