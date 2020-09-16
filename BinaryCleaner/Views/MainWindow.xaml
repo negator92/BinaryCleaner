@@ -43,6 +43,7 @@
         VerticalAlignment="Top"
         DockPanel.Dock="Bottom"
         BorderThickness="0"
+        Background="Transparent"
         IsReadOnly="True" />
   </DockPanel>
 </Window>

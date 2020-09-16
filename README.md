@@ -25,3 +25,11 @@ App can clean \bin, \obj recursive in folder you choose (where C# projects store
  * dotnet clean
  * dotnet restore
  * dotnet build -c release
+
+# Run
+
+ * dotnet run
+
+# On debug
+
+ * dotnet watch run

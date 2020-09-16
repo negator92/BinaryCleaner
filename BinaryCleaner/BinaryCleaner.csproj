@@ -15,6 +15,10 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>
+      <!-- Add the 'Watch' directive to watch for XAML file changes. -->
+      <Watch Include="**\*.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Avalonia">
       <Version>0.9.12</Version>
     </PackageReference>
@@ -24,5 +28,6 @@
     <PackageReference Include="Avalonia.ReactiveUI">
       <Version>0.9.12</Version>
     </PackageReference>
+    <PackageReference Include="Citrus.Avalonia" Version="1.2.6" />
   </ItemGroup>
 </Project>

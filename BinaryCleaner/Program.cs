@@ -16,7 +16,7 @@ namespace BinaryCleaner
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .LogToDebug()
-                .UseReactiveUI();
+                .UseReactiveUI()
+                .LogToDebug();
     }
 }
