@@ -7,43 +7,49 @@
         x:Class="BinaryCleaner.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="BinaryCleaner">
-  <Window.Styles>
-    <Style Selector="TextBlock">
-      <Setter Property="Margin" Value="5" />
-    </Style>
-    <Style Selector="TextBox">
-      <Setter Property="Margin" Value="5" />
-    </Style>
-    <Style Selector="Button">
-      <Setter Property="Margin" Value="5" />
-    </Style>
-    <Style Selector="DockPanel">
-      <Setter Property="Margin" Value="5" />
-    </Style>
-  </Window.Styles>
+    <Window.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style Selector="TextBox">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style Selector="DockPanel">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+    </Window.Styles>
 
-  <Design.DataContext>
-    <vm:MainWindowViewModel />
-  </Design.DataContext>
-
-  <DockPanel>
-    <DockPanel DockPanel.Dock="Bottom">
-      <TextBlock Text="Folder path: " DockPanel.Dock="Left"
-                 VerticalAlignment="Center" />
-      <Button Command="{Binding CleanFolderCommand}" DockPanel.Dock="Right">
-        <TextBlock Text="Clean" />
-      </Button>
-      <Button Command="{Binding OpenFolderCommand}" DockPanel.Dock="Right">
-        <TextBlock Text="Choose folder" />
-      </Button>
-      <TextBox Text="{Binding PathToClean}" DockPanel.Dock="Left" />
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Bottom">
+            <TextBlock Text="Folder path: " DockPanel.Dock="Left"
+                       VerticalAlignment="Center" />
+            <Button Command="{Binding CleanFolderCommand}" DockPanel.Dock="Right">
+                <TextBlock Text="Clean" />
+            </Button>
+            <Button Command="{Binding OpenFolderCommand}" DockPanel.Dock="Right">
+                <TextBlock Text="Choose folder" />
+            </Button>
+            <TextBox Text="{Binding PathToClean}" DockPanel.Dock="Left" />
+        </DockPanel>
+        <ProgressBar DockPanel.Dock="Bottom"
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            IsVisible="{Binding InProgress}"
+            Classes=""
+            IsIndeterminate="False" />
+        <TextBox Text="{Binding Log}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            DockPanel.Dock="Bottom"
+            BorderThickness="0"
+            Background="Transparent"
+            IsReadOnly="True" />
     </DockPanel>
-    <TextBox Text="{Binding Log}"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        DockPanel.Dock="Bottom"
-        BorderThickness="0"
-        Background="Transparent"
-        IsReadOnly="True" />
-  </DockPanel>
 </Window>

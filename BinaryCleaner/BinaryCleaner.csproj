@@ -15,8 +15,8 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>
-      <!-- Add the 'Watch' directive to watch for XAML file changes. -->
-      <Watch Include="**\*.xaml" />
+    <!-- Add the 'Watch' directive to watch for XAML file changes. -->
+    <Watch Include="**\*.xaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia">

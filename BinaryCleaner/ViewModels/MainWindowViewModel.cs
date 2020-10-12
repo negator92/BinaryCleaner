@@ -22,9 +22,16 @@ namespace BinaryCleaner.ViewModels
         private int memory = default;
         private string pathToClean = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private string log = string.Empty;
+        private bool inProgress = default;
 
         public ICommand CleanFolderCommand { get; set; }
         public ICommand OpenFolderCommand { get; set; }
+
+        public bool InProgress
+        {
+            get { return inProgress; }
+            set { this.RaiseAndSetIfChanged(ref inProgress, value); }
+        }
 
         public int Memory
         {
@@ -56,6 +63,7 @@ namespace BinaryCleaner.ViewModels
 
         private async Task RecursiveCleaning(string[] dirs)
         {
+            InProgress = true;
             try
             {
                 if (dirs.Length > 0)
@@ -79,8 +87,12 @@ namespace BinaryCleaner.ViewModels
             }
             catch (Exception ex)
             {
-                Log += $"{ex.Message}";
+                Log += $"{ex.Message}\n";
                 throw;
+            }
+            finally
+            {
+                InProgress = false;
             }
         }
 
