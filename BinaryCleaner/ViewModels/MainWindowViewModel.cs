@@ -13,7 +13,8 @@ namespace BinaryCleaner.ViewModels
     {
         public MainWindowViewModel()
         {
-            CleanFolderCommand = ReactiveCommand.Create(CleanFolder, this.WhenAnyValue(x => x.PathToClean).Select(y => Directory.Exists(y)));
+            CleanFolderCommand = ReactiveCommand.Create(async () => CleanFolder(),
+                this.WhenAnyValue(x => x.PathToClean).Select(y => Directory.Exists(y)));
             OpenFolderCommand = ReactiveCommand.Create(OpenFolder);
         }
 
@@ -59,6 +60,7 @@ namespace BinaryCleaner.ViewModels
         {
             // Log = PathToClean;
             await RecursiveCleaning(Directory.GetDirectories(PathToClean)).ConfigureAwait(false);
+            Log += $"\n\nTotally cleaned: {Memory} bytes.";
         }
 
         private async Task RecursiveCleaning(string[] dirs)
@@ -76,7 +78,7 @@ namespace BinaryCleaner.ViewModels
                             di.Delete(true);
                             Log += $"\n{dir}";
                             Memory = dir.Length;
-                            Log += 0.Equals(Memory) ? string.Empty : $" {Memory} bytes";
+                            Log += 0.Equals(dir.Length) ? string.Empty : $" {dir.Length} bytes";
                         }
                         else
                         {
