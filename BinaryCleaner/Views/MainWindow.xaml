@@ -25,6 +25,7 @@
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
+
     <DockPanel>
         <DockPanel DockPanel.Dock="Bottom">
             <TextBlock Text="Folder path: " DockPanel.Dock="Left"

@@ -1,5 +1,4 @@
 ﻿using Avalonia;
-using Avalonia.Logging.Serilog;
 using Avalonia.ReactiveUI;
 
 namespace BinaryCleaner
@@ -16,7 +15,7 @@ namespace BinaryCleaner
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .UseReactiveUI()
-                .LogToDebug();
+                .LogToTrace()
+                .UseReactiveUI();
     }
 }
