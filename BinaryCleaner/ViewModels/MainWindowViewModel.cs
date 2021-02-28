@@ -77,7 +77,7 @@ namespace BinaryCleaner.ViewModels
                         {
                             di.Delete(true);
                             Log += $"\n{dir}";
-                            Memory = dir.Length;
+                            Memory += dir.Length;
                             Log += 0.Equals(dir.Length) ? string.Empty : $" {dir.Length} bytes";
                         }
                         else
