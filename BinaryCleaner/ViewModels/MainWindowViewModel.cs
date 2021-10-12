@@ -18,7 +18,7 @@ namespace BinaryCleaner.ViewModels
             OpenFolderCommand = ReactiveCommand.Create(OpenFolder);
         }
 
-        private readonly string[] binaries = new string[] { "bin", "obj", ".vs", ".vscode", ".idea" };
+        private readonly string[] binaries = new string[] { "bin", "obj", ".vs", ".idea" };
 
         private int memory = default;
         private string pathToClean = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
