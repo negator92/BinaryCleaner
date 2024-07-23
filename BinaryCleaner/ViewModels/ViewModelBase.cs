@@ -1,8 +1,7 @@
 ﻿using ReactiveUI;
 
-namespace BinaryCleaner.ViewModels
+namespace BinaryCleaner.ViewModels;
+
+public class ViewModelBase : ReactiveObject
 {
-    public class ViewModelBase : ReactiveObject
-    {
-    }
 }
