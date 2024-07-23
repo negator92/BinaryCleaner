@@ -19,6 +19,7 @@ App can clean \bin, \obj recursive in folder you choose (where C# projects store
 * loader
 * ...
 * style
+* add local nuget clean
 
 # How to build
 
