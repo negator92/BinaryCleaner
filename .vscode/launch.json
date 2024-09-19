@@ -8,7 +8,7 @@
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build all",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/BinaryCleaner/bin/Debug/net6.0/BinaryCleaner.dll",
             "args": [],
@@ -16,7 +16,7 @@
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false,
-            "postDebugTask": "build"
+            "postDebugTask": "build all"
         },
         {
             "name": ".NET Core Attach",

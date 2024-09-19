@@ -11,16 +11,16 @@ namespace BinaryCleaner.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    private readonly string[] binaries = {"bin", "obj", ".vs", ".idea", "packages", "node_modules"};
-    private bool inProgress;
-    private string log = string.Empty;
+    private readonly string[] _binaries = { "bin", "obj", ".vs", ".idea", "packages", "node_modules" };
+    private bool _inProgress;
+    private string _log = string.Empty;
 
-    private int memory;
-    private string pathToClean = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    private int _memory;
+    private string _pathToClean = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
     public MainWindowViewModel()
     {
-        CleanFolderCommand = ReactiveCommand.Create(async () => CleanFolder(),
+        CleanFolderCommand = ReactiveCommand.Create(async () => await CleanFolder(),
             this.WhenAnyValue(x => x.PathToClean).Select(y => Directory.Exists(y)));
         OpenFolderCommand = ReactiveCommand.Create(OpenFolder);
     }
@@ -30,32 +30,33 @@ public class MainWindowViewModel : ViewModelBase
 
     public bool InProgress
     {
-        get => inProgress;
-        set => this.RaiseAndSetIfChanged(ref inProgress, value);
+        get => _inProgress;
+        set => this.RaiseAndSetIfChanged(ref _inProgress, value);
     }
 
     public int Memory
     {
-        get => memory;
-        set => this.RaiseAndSetIfChanged(ref memory, value);
+        get => _memory;
+        set => this.RaiseAndSetIfChanged(ref _memory, value);
     }
 
     public string Log
     {
-        get => log;
-        set => this.RaiseAndSetIfChanged(ref log, value);
+        get => _log;
+        set => this.RaiseAndSetIfChanged(ref _log, value);
     }
 
     public string PathToClean
     {
-        get => pathToClean;
-        set => this.RaiseAndSetIfChanged(ref pathToClean, value);
-        // Log += $"\n{value}";
+        get => _pathToClean;
+        set => this.RaiseAndSetIfChanged(ref _pathToClean, value);
     }
 
     private async Task CleanFolder()
     {
-        // Log = PathToClean;
+        Log = string.Empty;
+        Memory = default;
+        Log = PathToClean;
         await RecursiveCleaning(Directory.GetDirectories(PathToClean)).ConfigureAwait(false);
         Log += $"\n\nTotally cleaned: {Memory} bytes.";
     }
@@ -70,7 +71,7 @@ public class MainWindowViewModel : ViewModelBase
                 foreach (var dir in dirs)
                 {
                     var di = new DirectoryInfo(dir);
-                    if (binaries.Any(b => b.Equals(di.Name)))
+                    if (Array.Exists(_binaries, b => b.Equals(di.Name)))
                     {
                         di.Delete(true);
                         Log += $"\n{dir}";
@@ -97,7 +98,7 @@ public class MainWindowViewModel : ViewModelBase
 
     private async Task OpenFolder()
     {
-        var dlg = new OpenFolderDialog {Directory = PathToClean};
+        var dlg = new OpenFolderDialog { Directory = PathToClean };
 
         var result = await dlg.ShowAsync(new Window()).ConfigureAwait(false);
         if (!string.IsNullOrEmpty(result))
